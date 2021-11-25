@@ -6,9 +6,12 @@
   <a-scene embedded arjs>
     <!-- create your content here. just a box for now -->
 
-  <a-entity scale=".2 .2 .2">
-    </a-entity gltf-model="ls.gtlf" scale="-1 1 1">
-  </a-entity>
+    <!-- define your gltf asset -->
+  <a-assets>
+    <a-asset-item id="tree" src="ls.gltf"></a-asset-item>
+  </a-assets>
+  <!-- use your gltf model -->
+  <a-entity gltf-model="##tree"></a-entity>
 
   <a-image src="tst.png"></a-image>
 
