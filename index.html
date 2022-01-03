@@ -3,27 +3,12 @@
 <!-- include ar.js for A-Frame -->
 <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
 <script type="text/javascript">
-  AFRAME.registerComponent('change-color-on-click', {
-    // Could use a schem to preserve the color! then simply change it on update
-    // if clicked?
+AFRAME.registerComponent('cursor-listener', {
     init: function () {
-        var COLORS = [
-            'pink',
-            //'blue',
-            'yellow',
-            'red',
-            'peachpuff',
-            '#2EAFAC',
-            '#BAE'
-        ];
-        
-        this.el.addEventListener('click', function (evt) {
-            var randomIndex = Math.floor(Math.random() * COLORS.length);
-            var newColor = COLORS[randomIndex];
-            this.setAttribute('material', 'color', newColor);
-            console.log('I was clicked at: ', evt.detail.intersection.point, "and my new color is: ", newColor);
+            this.el.addEventListener('click', function (evt) {
+            console.log('I was clicked');               
         });
-    }
+  }
 });
 </script>
 <body style='margin : 0px; overflow: hidden;'>
@@ -37,7 +22,7 @@
   <!-- use your gltf model -->
   <a-entity gltf-model="#tree" scale="0.02 0.02 0.02"></a-entity>
 
-  <a-box position='0 0 -3', color='green', change-color-on-click=''></a-box>
+  <a-box cursor-listener color="#CCC" width="3" depth="3" height="0.1" position="0 0 -2"></a-box>
 
   <a-image src="tst.png"></a-image>
 
