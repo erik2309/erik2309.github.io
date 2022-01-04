@@ -20,10 +20,12 @@ AFRAME.registerComponent('for_a_marker', {
         <a-entity cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
         <a-assets>
             <a-asset-item id="treefile" src="ls.gltf"></a-asset-item>
-          </a-assets>
+            <a-asset-item id="treefile2" src="ls2.gltf"></a-asset-item>
+        </a-assets>
         <a-marker id="marker" preset="hiro" emitevents="true" for_a_marker>
             <a-text id="text" class="intersectable" scale="2 2 2" position="0 0 0" rotation="270 0 0" value="text" color="red"></a-text>
             <a-entity id="tree" class="intersectable" gltf-model="#treefile" scale="0.02 0.02 0.02"></a-entity>
+            <a-entity id="tree2" class="intersectable" gltf-model="#treefile2" scale="0.02 0.02 0.02"></a-entity>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
