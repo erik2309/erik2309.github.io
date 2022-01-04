@@ -5,21 +5,22 @@
 AFRAME.registerComponent('for_a_marker', {
     init: function () {
         var text = document.querySelector('#text');
-        var tree = document.querySelector('#text');
-        var tree2 = document.querySelector('#text');
+        var tree = document.querySelector('#tree');
+        var tree2 = document.querySelector('#tree2');
 
         tree.setAttribute("visible",false)
         tree2.setAttribute("visible",true)
 
-        text.addEventListener("click", function (evt) { //or you could do "mouseenter" [event](https://aframe.io/docs/0.9.0/components/cursor.html#events)
+        text.addEventListener("click", function (evt) {
             alert("do your stuff");
         });
 
-        tree.addEventListener("click", function (evt) { //or you could do "mouseenter" [event](https://aframe.io/docs/0.9.0/components/cursor.html#events)
+        tree.addEventListener("click", function (evt) {
             alert("Landscape");
         });
 
-        tree2.addEventListener("click", function (evt) { //or you could do "mouseenter" [event](https://aframe.io/docs/0.9.0/components/cursor.html#events)
+        tree2.addEventListener("click", function (evt) {
+            alert("Gefunden!");
             tree.setAttribute("visible",true)
             tree2.setAttribute("visible",false)
         });
