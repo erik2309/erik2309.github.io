@@ -1,37 +1,47 @@
-<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<!DOCTYPE html>
+<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.2/aframe/build/aframe-ar.js"></script>
 <script>
-  AFRAME.registerComponent('change-color-on-hover', {
-    schema: {
-      color: {default: 'red'}
-    },
-
+AFRAME.registerComponent('for_a_marker', {
     init: function () {
-      var data = this.data;
-      var el = this.el;  // <a-box>
-      var defaultColor = el.getAttribute('material').color;
+        var text = document.querySelector('#text');
+        var tree = document.querySelector('#tree');
+        var tree2 = document.querySelector('#tree2');
 
-      el.addEventListener('mouseenter', function () {
-        el.setAttribute('color', data.color);
-        console.log("Hover!");
-      });
+        tree.setAttribute("visible",false)
+        tree2.setAttribute("visible",true)
 
-      el.addEventListener('mouseleave', function () {
-        el.setAttribute('color', defaultColor);
-        console.log("De-Hover!");
-      });
+        text.addEventListener("click", function (evt) {
+            
+        });
 
-      el.addEventListener('click', function () {
-        el.setAttribute('color', defaultColor);
-        console.log("Click!");
-      });
+        tree.addEventListener("click", function (evt) {
+            tree.setAttribute("visible",false)
+            tree2.setAttribute("visible",true)
+            alert("1")
+        });
+
+        tree2.addEventListener("click", function (evt) {
+            tree.setAttribute("visible",true)
+            tree2.setAttribute("visible",false)
+            alert("2")
+        });
     }
-  });
+});
 </script>
-<body>
-  <a-scene>
-    <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue"></a-box>
-    <a-box color="#EF2D5E" position="0 3 -4" change-color-on-hover="color: green"></a-box>
-
-    <a-camera><a-cursor></a-cursor></a-camera>
-  </a-scene>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+    <a-scene embedded arjs='debugUIEnabled: false; sourceType: webcam' vr-mode-ui='enabled: false'>
+        <a-entity cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
+        <a-assets>
+            <a-asset-item id="treefile" src="ls.gltf"></a-asset-item>
+            <a-asset-item id="treefile2" src="ls2.gltf"></a-asset-item>
+        </a-assets>
+        <a-marker id="marker" preset="hiro" emitevents="true" for_a_marker>
+            <a-text id="text" class="intersectable" scale="2 2 2" position="0 0 0" rotation="270 0 0" value="text" color="red"></a-text>
+            <a-entity id="tree" class="intersectable" gltf-model="#treefile" scale="0.01 0.01 0.01" visible="false"></a-entity>
+            <a-entity id="tree2" class="intersectable" gltf-model="#treefile2" scale="0.01 0.01 0.01"></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
+</html>
